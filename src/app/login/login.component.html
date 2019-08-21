@@ -1,40 +1,33 @@
-<div class="container-fluid main-section" style="height: calc(100vh - 66px);">
-  <div class="row login-main">
-      <div class="col-xs-12 offset-sm-2 col-sm-8 offset-md-4 col-md-4 offset-lg-4 col-lg-4 login-inner">
-          <div class="login-inner-container">
-              <div class="">
-                  <h2 class="title">Bienvenido</h2>
-                  <small class="form-text sub-title">Ingrese su usuario y contraseña</small>
-                  <form (ngSubmit)="login(f)" #f="ngForm" class="login100-form validate-form flex-sb flex-w">
-                      <div class="md-form">
-                          <input mdbInput type="text" autofocus="" class="form-control" id="input-email" name="email" [(ngModel)]="user.username" />
-                          <label class="" for="input-email">Email</label>
-                      </div>
-                      <div class="md-form">
-                          <input mdbInput class="form-control" id="input-password" name="password" type="password" [(ngModel)]="user.password" required="" minlength="4" maxlength="50" />
-                          <label class="" for="input-password">Contraseña</label>
-                      </div>
+<!-- Default form login -->
 
-                      <div class="row">
-                          <div class="col-6 col-sm-12">
-                              <button class="btn btn-block btn-primary" style="margin-bottom: 10px;" type="submit">
-               ingresar
-              </button>
-                          </div>
-                          <div class="col-6 col-sm-12">
-                              <button class="btn btn-block btn-warning" mdbBtn mdbWavesEffect>
-                Nuevo Usuario
-              </button>
-                          </div>
-                      </div>
+<div class="container-fluid main-section">
+    <div class="row login-main">
+        <div class="col-xs-12 offset-sm-2 col-sm-8 offset-md-4 col-md-4 offset-lg-4 col-lg-4 login-inner">
+            <img src="../../assets/img/logo_header.png" class="mt-5 mb-3">
+            <div class="login-inner-container p-5">
+                <div class="">
+                    <p class="title">¡Hola! Ingresa los datos de tu cuenta para continuar</p>
+                    <form (ngSubmit)="login(f)" #f="ngForm" class="login100-form validate-form flex-sb flex-w">
+                        <div class="form-group">
+                            <input mdbInput type="text" autofocus="" class="form-control" id="input-email" name="email" [(ngModel)]="user.username" placeholder="Usuario" />
+                        </div>
+                        <div class="form-group">
+                            <input mdbInput class="form-control" id="input-password" name="password" type="password" [(ngModel)]="user.password" required="" minlength="4" maxlength="50" placeholder="Contraseña" />
+                        </div>
 
-
-                  </form>
-              </div>
-              <div style="margin-top: 20px; text-align: center;">
-                  <a class="forgot" style="cursor: pointer;">¿Olvidó su contraseña?</a>
-              </div>
-          </div>
-      </div>
-  </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-12">
+                                <button class="btn btn-block btn-default text-uppercase" style="margin-bottom: 10px;" type="submit">
+                                Iniciar Sesión
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <a class="forgot text-white" style="cursor: pointer;">Olvidé mi usuario o contraseña</a>
+            </div>
+        </div>
+    </div>
 </div>
