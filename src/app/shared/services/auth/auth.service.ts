@@ -4,12 +4,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { Subject } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-
+  public isLogged: Subject<any> = new Subject<any>();
+  private logged: false;
 
   userToken = '';
   private currentUserSubject: BehaviorSubject<User>;
@@ -84,5 +88,19 @@ export class AuthService {
         console.log("not authenticated");
         return false;
       }
+    }
+
+
+
+    setLogged(logged) {
+      this.logged = logged;
+
+      setTimeout(() => {
+        this.refreshAll();
+      }, 0);
+    }
+
+    public refreshAll() {
+      this.isLogged.next({ logged: this.logged });
     }
 }

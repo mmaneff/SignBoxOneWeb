@@ -38,7 +38,8 @@ export class ApiRestService {
         // })
         map((data) => {
           return new ModelMapper(itemType).map(data);
-        })
+        }),
+        catchError(this.handleError<T>('getAll'))
     );
   }
 
@@ -53,7 +54,8 @@ export class ApiRestService {
         map((data) => {
           // return new ModelMapper.map(data);
           return data;
-        })
+        }),
+        catchError(this.handleError<T>('getById'))
     );
   }
 

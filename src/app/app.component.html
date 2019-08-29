@@ -1,5 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<app-nav-bar *ngIf="logged"></app-nav-bar>
+<router-outlet *ngIf="logged"></router-outlet>
 <!-- <app-footer></app-footer> -->
+
+<app-login *ngIf="!logged"></app-login>
