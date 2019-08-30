@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Terceros
 import { MDBBootstrapModule, NavbarModule } from 'angular-bootstrap-md';
@@ -19,6 +19,9 @@ import { LoginComponent } from './login/login.component';
 import { InvoiceApiService } from '../app/shared/services/invoices/invoice-api.service';
 import { MainComponent } from './main/main.component';
 
+// HELPERS
+
+import {BasicHttpInterceptor} from '../app/shared/helpers/basic-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,7 @@ import { MainComponent } from './main/main.component';
     FormsModule
   ],
   providers: [
-    InvoiceApiService,
+    InvoiceApiService, { provide: HTTP_INTERCEPTORS, useClass: BasicHttpInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

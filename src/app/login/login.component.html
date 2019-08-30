@@ -9,7 +9,7 @@
                     <p class="title">¡Hola! Ingresa los datos de tu cuenta para continuar</p>
                     <form (ngSubmit)="login(f)" #f="ngForm" class="login100-form validate-form flex-sb flex-w">
                         <div class="form-group">
-                            <input mdbInput type="text" autofocus="" class="form-control" id="input-email" name="email" [(ngModel)]="user.username" placeholder="Usuario" />
+                            <input mdbInput type="text" autofocus="" class="form-control" id="input-domain" name="domain" [(ngModel)]="user.domain" placeholder="Usuario" />
                         </div>
                         <div class="form-group">
                             <input mdbInput class="form-control" id="input-password" name="password" type="password" [(ngModel)]="user.password" required="" minlength="4" maxlength="50" placeholder="Contraseña" />

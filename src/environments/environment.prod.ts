@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  urlInvoices: 'http://localhost:3000/',
+  urlInvoices: 'https://mockapiv1.herokuapp.com/',
   urlLicencias: 'http://localhost:3000/licencias/'
 };

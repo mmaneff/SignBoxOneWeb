@@ -5,6 +5,7 @@ import { Invoice } from '../../model/invoice';
 import { ApiRestService } from '../core/api-rest.service';
 import { environment } from '../../../../environments/environment';
 import { Customer } from '../../model/customer';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -22,4 +23,11 @@ export class InvoiceApiService {
     return this.apiRest.getAll<Customer[]>(environment.urlInvoices, 'customers', Customer);
   }
 
+  //test
+  getAllProducts(){
+    return this.http.get(environment.urlInvoices + `products`)
+    .subscribe(data=>{
+      console.log(data);
+    });
+  }
 }
