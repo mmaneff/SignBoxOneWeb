@@ -69,8 +69,7 @@ export class LoginComponent implements OnInit {
     Swal.fire({
       allowOutsideClick: false,
       type: 'info',
-      text: 'Wait please...',
-      timer: 2000
+      text: 'Wait please...'
     });
     Swal.showLoading();
     this.authService.login(this.user.domain, this.user.password).subscribe( resp => {
@@ -82,7 +81,7 @@ export class LoginComponent implements OnInit {
       // this.router.navigateByUrl('/modulo-recibos');
       this.authService.setLogged(true);
       this.router.navigate(['modulo-recibos']);
-      // Swal.close();
+      Swal.close();
     }, (err) => {
 
       Swal.fire({
