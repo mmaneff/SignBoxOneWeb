@@ -1,15 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-html {
-    // background-color: rgb(45, 50, 178);
+$color-primary: rgb(45, 50, 178);
+$color-primary-900: rgb(45, 50, 178);
+$color-primary-700: rgb(45, 50, 178);
+$color-primary-600: rgb(45, 50, 178);
+$color-primary-500: rgb(45, 50, 178);
+$color-primary-400: rgb(45, 50, 178);
+$color-primary-300: rgb(45, 50, 178);
+$color-primary-200: rgb(45, 50, 178);
+$color-primary-100: rgb(45, 50, 178);
+$color-primary-50: #E8EAF6;
+$color-secundary: #ff8f00;
+body {
+    background-color: $color-primary-50;
+    font-family: 'Muli', sans-serif;
 }
 
 .bg-blue {
-    background-color: rgb(45, 50, 178);
+    background-color: $color-primary;
     height: 30%;
 }
 
 .bg-white {
     background-color: #FFF;
     height: 70%;
+}
+
+.container-signbox {
+    min-height: calc(100vh - 157px);
 }

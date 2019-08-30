@@ -39,15 +39,18 @@ export class AuthService {
 
   login( username: string, password: string ) {
 
-    var data: any = {"email": username, "password": password};
-    return this.http.post<any>(environment.urlInvoices+`login`, data)
+    const data: any = {
+      email: username,
+      password: password
+    };
+    return this.http.post<any>(environment.urlInvoices + `login`, data)
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-                //user.authdata = window.btoa(username + ':' + password);
+                // user.authdata = window.btoa(username + ':' + password);
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
                 this.saveToken(user['token'])
-                console.log("user: ", user);
+                console.log('user: ', user);
                 return user;
             }));
 
@@ -59,48 +62,48 @@ export class AuthService {
     const today = new Date();
     today.setSeconds( 3600 * 24 );
     localStorage.setItem('expires', today.getTime().toString());
+  }
+
+  private readToken() {
+    if (!!localStorage.getItem('token')) {
+      this.userToken = localStorage.getItem('token');
+    } else {
+      this.userToken = '';
     }
 
-    private readToken() {
-        if (!!localStorage.getItem('token')) {
-        this.userToken = localStorage.getItem('token');
-      } else {
-        this.userToken = '';
-      }
+    return this.userToken;
+  }
 
-        return this.userToken;
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('token') == null ) {
+      console.log('not authenticated');
+      return false;
     }
 
-    isAuthenticated(): boolean {
-      if (localStorage.getItem('token') == null ) {
-        console.log("not authenticated");
-        return false;
-      }
+    const expires = Number(localStorage.getItem('expires'));
+    // console.log(expires);
+    const expirationDate = new Date ();
+    expirationDate.setTime(expires);
 
-      const expires = Number(localStorage.getItem('expires'));
-      // console.log(expires);
-      const expirationDate = new Date ();
-      expirationDate.setTime(expires);
-
-      if ( expirationDate > new Date() ) {
-        return true;
-      } else {
-        console.log("not authenticated");
-        return false;
-      }
+    if ( expirationDate > new Date() ) {
+      return true;
+    } else {
+      console.log('not authenticated');
+      return false;
     }
+  }
+
+  setLogged(logged) {
+    this.logged = logged;
+
+    setTimeout(() => {
+      this.refreshAll();
+    }, 0);
+  }
+
+  public refreshAll() {
+    this.isLogged.next({ logged: this.logged });
+  }
 
 
-
-    setLogged(logged) {
-      this.logged = logged;
-
-      setTimeout(() => {
-        this.refreshAll();
-      }, 0);
-    }
-
-    public refreshAll() {
-      this.isLogged.next({ logged: this.logged });
-    }
 }

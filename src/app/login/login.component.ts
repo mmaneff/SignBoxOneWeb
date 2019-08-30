@@ -64,39 +64,38 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    //console.log(form);
+    // console.log(form);
     // if ( form.invalid ) { return; }
-    //this.user.username = mail;
-    //this.user.password = password;
-    //console.log("username: ", this.user.username);
-    //console.log("password: ", this.user.password);
-    // Swal.fire({
-    //   allowOutsideClick: false,
-    //   type: 'info',
-    //   text: 'Wait please...',
-    //   timer: 2000
-    // });
-    // Swal.showLoading();
-    // this.authService.login(this.user.username, this.user.password).subscribe( resp => {
+    // this.user.username = mail;
+    // this.user.password = password;
+    // console.log("username: ", this.user.username);
+    // console.log("password: ", this.user.password);
+    Swal.fire({
+      allowOutsideClick: false,
+      type: 'info',
+      text: 'Wait please...',
+      timer: 2000
+    });
+    Swal.showLoading();
+    this.authService.login(this.user.username, this.user.password).subscribe( resp => {
 
-    //   // Correct Login
+      // Correct Login
+      this.user.username = '';
+      this.user.password = '';
 
+      // this.router.navigateByUrl('/modulo-recibos');
+      this.authService.setLogged(true);
+      this.router.navigate(['modulo-recibos']);
+      // Swal.close();
+    }, (err) => {
 
-    //   this.user.username = "";
-    //   this.user.password = "";
-
-    //   this.router.navigateByUrl('/modulo-recibos');
-    //   // Swal.close();
-    // }, (err) => {
-
-    //   Swal.fire({
-    //     type: 'error',
-    //     title: 'Authentication error',
-    //     text: err.error.message + " Try again"
-    //   });
-    // });
-    this.authService.setLogged(true);
-    this.router.navigate(['modulo-recibos']);
+      Swal.fire({
+        type: 'error',
+        title: 'Authentication error',
+        text: err.error.message + " Try again"
+      });
+    });
+    // this.router.navigate(['modulo-recibos']);
   }
 
 
