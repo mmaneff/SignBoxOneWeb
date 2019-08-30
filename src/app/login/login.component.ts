@@ -22,7 +22,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
 
-  mail = '';
+  domain = '';
   password = '';
 
   invoices: Invoice[];
@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
     //this.getAllInvoices();
     //this.getAllCustomers();
     if(this.authService.isAuthenticated()){
-      this.router.navigateByUrl('/modulo-recibos');
+      // this.router.navigateByUrl('/modulo-recibos');
+
+      this.router.navigate(['modulo-recibos']);
       return;
     }
   }
@@ -64,12 +66,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // console.log(form);
-    // if ( form.invalid ) { return; }
-    // this.user.username = mail;
-    // this.user.password = password;
-    // console.log("username: ", this.user.username);
-    // console.log("password: ", this.user.password);
     Swal.fire({
       allowOutsideClick: false,
       type: 'info',
@@ -77,10 +73,10 @@ export class LoginComponent implements OnInit {
       timer: 2000
     });
     Swal.showLoading();
-    this.authService.login(this.user.username, this.user.password).subscribe( resp => {
+    this.authService.login(this.user.domain, this.user.password).subscribe( resp => {
 
       // Correct Login
-      this.user.username = '';
+      this.user.domain = '';
       this.user.password = '';
 
       // this.router.navigateByUrl('/modulo-recibos');

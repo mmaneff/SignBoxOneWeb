@@ -37,10 +37,10 @@ export class AuthService {
     localStorage.removeItem('expires');
   }
 
-  login( username: string, password: string ) {
+  login( domain: string, password: string ) {
 
     const data: any = {
-      email: username,
+      domain: domain,
       password: password
     };
     return this.http.post<any>(environment.urlInvoices + `login`, data)
@@ -86,11 +86,13 @@ export class AuthService {
     expirationDate.setTime(expires);
 
     if ( expirationDate > new Date() ) {
+      // console.log("authenticated");
       return true;
     } else {
       console.log('not authenticated');
       return false;
     }
+
   }
 
   setLogged(logged) {
